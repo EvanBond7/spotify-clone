@@ -1,7 +1,13 @@
-import Head from 'next/head';
-import Image from 'next/image';
-import styles from '../styles/Home.module.css';
+import GradientLayout from '../components/gradientLayout';
 
 export default function Home() {
-  return <div>Spotify app</div>;
+  return (
+    <GradientLayout
+      color='green'
+      subtitle='profile'
+      title='Evan Bond'
+      description='7 public playlists'
+      // image
+    ></GradientLayout>
+  );
 }
