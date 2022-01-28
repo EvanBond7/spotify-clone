@@ -62,12 +62,7 @@ const Sidebar = () => {
     >
       <Box paddingY='20px' height='100%'>
         <Box width='120px' marginBottom='20px' paddingX='20px'>
-          <NextImage
-            src='/logo-app.svg'
-            height={60}
-            width={120}
-            color='white'
-          />
+          <NextImage src='/logo-app.svg' height={60} width={120} />
         </Box>
         <Box marginBottom='20px'>
           <List spacing={2}>
@@ -115,7 +110,13 @@ const Sidebar = () => {
             {playlists.map((playlist) => (
               <ListItem paddingX='20px' key={playlist.id}>
                 <LinkBox>
-                  <NextLink href='/' passHref>
+                  <NextLink
+                    href={{
+                      pathname: '/playlist/[id]',
+                      query: { id: playlist.id },
+                    }}
+                    passHref
+                  >
                     <LinkOverlay>{playlist.name}</LinkOverlay>
                   </NextLink>
                 </LinkBox>
