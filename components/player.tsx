@@ -25,9 +25,7 @@ import { formatTime } from '../lib/formatters';
 
 const Player = ({ songs, activeSong }) => {
   const [playing, setPlaying] = useState(true);
-  //   const [index, setIndex] = useState(
-  //     songs.findIndex((s) => s.id === activeSong.id)
-  //   );
+  const [index, setIndex] = useState(0);
   const [seek, setSeek] = useState(0.0);
   const [isSeeking, setIsSeeking] = useState(false);
   const [repeat, setRepeat] = useState(false);
@@ -116,13 +114,13 @@ const Player = ({ songs, activeSong }) => {
   return (
     <Box>
       <Box>
-        {/* <ReactHowler
+        <ReactHowler
           playing={playing}
           src={activeSong?.url}
           ref={soundRef}
           onLoad={onLoad}
           onEnd={onEnd}
-        /> */}
+        />
       </Box>
       <Center color='gray.600'>
         <ButtonGroup>
