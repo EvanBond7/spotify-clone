@@ -24,7 +24,7 @@ import { useStoreActions } from 'easy-peasy';
 import { formatTime } from '../lib/formatters';
 
 const Player = ({ songs, activeSong }) => {
-  const [playing, setPlaying] = useState(true);
+  const [playing, setPlaying] = useState(false);
   const [index, setIndex] = useState(0);
   const [seek, setSeek] = useState(0.0);
   const [isSeeking, setIsSeeking] = useState(false);
@@ -71,26 +71,26 @@ const Player = ({ songs, activeSong }) => {
     setRepeat((state) => !state);
   };
 
-  //   const prevSong = () => {
-  //     setIndex((state) => {
-  //       return state ? state - 1 : songs.length - 1;
-  //     });
-  //   };
+  const prevSong = () => {
+    setIndex((state) => {
+      return state ? state - 1 : songs.length - 1;
+    });
+  };
 
-  //   const nextSong = () => {
-  //     setIndex((state) => {
-  //       if (shuffle) {
-  //         const next = Math.floor(Math.random() * songs.length);
+  const nextSong = () => {
+    setIndex((state) => {
+      if (shuffle) {
+        const next = Math.floor(Math.random() * songs.length);
 
-  //         if (next === state) {
-  //           return nextSong();
-  //         }
-  //         return next;
-  //       }
+        if (next === state) {
+          return nextSong();
+        }
+        return next;
+      }
 
-  //       return state === songs.length - 1 ? 0 : state + 1;
-  //     });
-  //   };
+      return state === songs.length - 1 ? 0 : state + 1;
+    });
+  };
 
   const onEnd = () => {
     if (repeatRef.current) {
@@ -139,7 +139,7 @@ const Player = ({ songs, activeSong }) => {
             aria-label='skip'
             fontSize='24px'
             icon={<MdSkipPrevious />}
-            // onClick={prevSong}
+            onClick={prevSong}
           />
           {playing ? (
             <IconButton
@@ -169,7 +169,7 @@ const Player = ({ songs, activeSong }) => {
             aria-label='next'
             fontSize='24px'
             icon={<MdSkipNext />}
-            // onClick={nextSong}
+            onClick={nextSong}
           />
           <IconButton
             outline='none'
