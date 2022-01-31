@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react';
 import {
   ButtonGroup,
   Box,
@@ -11,7 +12,6 @@ import {
   Text,
 } from '@chakra-ui/react';
 import ReactHowler from 'react-howler';
-import { useEffect, useRef, useState } from 'react';
 import {
   MdShuffle,
   MdSkipPrevious,
@@ -35,29 +35,29 @@ const Player = ({ songs, activeSong }) => {
   const repeatRef = useRef(repeat);
   const setActiveSong = useStoreActions((state: any) => state.changeActiveSong);
 
-  //   useEffect(() => {
-  //     let timerId;
+  useEffect(() => {
+    let timerId;
 
-  //     if (playing && !isSeeking) {
-  //       const f = () => {
-  //         setSeek(soundRef.current.seek());
-  //         timerId = requestAnimationFrame(f);
-  //       };
+    if (playing && !isSeeking) {
+      const f = () => {
+        setSeek(soundRef.current.seek());
+        timerId = requestAnimationFrame(f);
+      };
 
-  //       timerId = requestAnimationFrame(f);
-  //       return () => cancelAnimationFrame(timerId);
-  //     }
+      timerId = requestAnimationFrame(f);
+      return () => cancelAnimationFrame(timerId);
+    }
 
-  //     cancelAnimationFrame(timerId);
-  //   }, [playing, isSeeking]);
+    cancelAnimationFrame(timerId);
+  }, [playing, isSeeking]);
 
-  //   useEffect(() => {
-  //     setActiveSong(songs[index]);
-  //   }, [index, setActiveSong, songs]);
+  useEffect(() => {
+    setActiveSong(songs[index]);
+  }, [index, setActiveSong, songs]);
 
-  //   useEffect(() => {
-  //     repeatRef.current = repeat;
-  //   }, [repeat]);
+  useEffect(() => {
+    repeatRef.current = repeat;
+  }, [repeat]);
 
   const setPlayState = (value) => {
     setPlaying(value);
