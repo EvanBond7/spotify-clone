@@ -25,7 +25,9 @@ import { formatTime } from '../lib/formatters';
 
 const Player = ({ songs, activeSong }) => {
   const [playing, setPlaying] = useState(false);
-  const [index, setIndex] = useState(0);
+  const [index, setIndex] = useState(
+    songs.findIndex((s) => s.id === activeSong.id)
+  );
   const [seek, setSeek] = useState(0.0);
   const [isSeeking, setIsSeeking] = useState(false);
   const [repeat, setRepeat] = useState(false);
